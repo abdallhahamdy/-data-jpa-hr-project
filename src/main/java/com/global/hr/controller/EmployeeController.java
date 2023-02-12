@@ -21,5 +21,10 @@ public class EmployeeController {
         return employeeService.findById(id);
     }
 
+//    @GetMapping("/filter")
+//    public Employee findByName ( @PathVariable String name ) {
+//
+//        return employeeService.fil
+//    }
 
 }
