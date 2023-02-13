@@ -1,5 +1,7 @@
 package com.global.hr.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 
 @Table(name = "Employee")
@@ -15,6 +17,10 @@ public class Employee {
     private String name;
 
     private Double salary;
+
+    @ManyToOne
+//    @JoinColumn(name = "department")
+    private Department department;
 
     public Long getId() {
         return id;
@@ -38,5 +44,13 @@ public class Employee {
 
     public void setSalary(Double salary) {
         this.salary = salary;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 }
