@@ -22,4 +22,9 @@ public interface EmployeeRepo extends JpaRepository<Employee, Long> {
     @Query(value = "select * from employee emp where emp.name like :empName", nativeQuery = true)
     List<Employee> filterNative(@Param("empName") String name);
 
+    List<Employee> findByDepartmentId(Long deptId);
+
+    @Query(value = "select emp from Employee emp join emp.department dept where dept.id = :deptId")
+    List<Employee> findByDepartment(Long deptId);
+
 }

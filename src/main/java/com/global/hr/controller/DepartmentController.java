@@ -1,9 +1,12 @@
 package com.global.hr.controller;
 
 import com.global.hr.entity.Department;
+import com.global.hr.entity.Employee;
 import com.global.hr.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/department")
@@ -30,4 +33,8 @@ public class DepartmentController {
         return departmentService.update(dept);
     }
 
+    @GetMapping()
+    public List<Department> findAll() {
+        return departmentService.findAll();
+    }
 }

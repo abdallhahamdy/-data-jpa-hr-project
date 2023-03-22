@@ -33,4 +33,8 @@ public class DepartmentService {
 
         return departmentRepo.save(dept);
     }
+
+    public List<Department> findAll() {
+        return departmentRepo.findAll();
+    }
 }

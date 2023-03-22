@@ -39,4 +39,11 @@ public class EmployeeService {
         return employeeRepo.save(emp);
     }
 
+    public List<Employee> findByDepartmentId(Long deptId) {
+        return employeeRepo.findByDepartment(deptId);
+    }
+
+    public List<Employee> findAll() {
+        return employeeRepo.findAll();
+    }
 }

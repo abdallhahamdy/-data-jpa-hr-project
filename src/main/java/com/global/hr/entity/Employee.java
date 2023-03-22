@@ -1,5 +1,6 @@
 package com.global.hr.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -19,7 +20,8 @@ public class Employee {
     private Double salary;
 
     @ManyToOne
-//    @JoinColumn(name = "department")
+    @JoinColumn(name = "department_id")
+    @JsonIgnore
     private Department department;
 
     public Long getId() {

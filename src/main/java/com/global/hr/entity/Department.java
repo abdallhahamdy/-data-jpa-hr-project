@@ -1,6 +1,7 @@
 package com.global.hr.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Department")
@@ -11,6 +12,9 @@ public class Department {
     private Long id;
 
     private String name;
+
+    @OneToMany(mappedBy = "department")
+    private List<Employee> employees;
 
     public Long getId() {
         return id;
@@ -26,5 +30,13 @@ public class Department {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
     }
 }
