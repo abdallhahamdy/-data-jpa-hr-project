@@ -13,11 +13,11 @@ public class Department {
 //    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "department_gen")
 //    @SequenceGenerator(name = "department_gen", sequenceName = "department_seq", initialValue = 100)
 
-    @GeneratedValue(strategy = GenerationType.TABLE, generator = "department_gen")
-    @TableGenerator(name = "department_gen", table = "department_seq", allocationSize = 1)
-
 //    @GeneratedValue(strategy = GenerationType.TABLE, generator = "department_gen")
-//    @TableGenerator(name = "department_gen", table = "department_seq", allocationSize = 1, initialValue = 20)
+//    @TableGenerator(name = "department_gen", table = "department_seq", allocationSize = 1)
+
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "department_gen")
+    @TableGenerator(name = "department_gen", table = "department_seq", allocationSize = 1, initialValue = 20)
     private Long id;
 
     private String name;
