@@ -13,6 +13,9 @@ public class EmployeeService {
     @Autowired
     private EmployeeRepo employeeRepo;
 
+    @Autowired
+    private DepartmentService departmentService;
+
     public Employee findById (Long id) {
 
         return employeeRepo.findById(id).orElseThrow();
@@ -24,6 +27,10 @@ public class EmployeeService {
     }
 
     public Employee insert (Employee emp) {
+
+        if (emp.getDepartment() != null && emp.getDepartment().getId() != null) {
+            emp.setDepartment(departmentService.findById(emp.getDepartment().getId()));
+        }
 
         return employeeRepo.save(emp);
     }

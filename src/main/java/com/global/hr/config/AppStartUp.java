@@ -23,35 +23,39 @@ public class AppStartUp implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        // create roles
-        Role role1 = new Role();
-        role1.setName("Admin");
+        if (userService.findAll().isEmpty()) {
 
-        Role role2 = new Role();
-        role2.setName("User");
+            // create roles
+            Role role1 = new Role();
+            role1.setName("Admin");
 
-        roleService.insert(role1);
-        roleService.insert(role2);
+            Role role2 = new Role();
+            role2.setName("User");
 
-        Set<Role> adminRole = new HashSet<>();
-        adminRole.add(role1);
+            roleService.insert(role1);
+            roleService.insert(role2);
 
-        Set<Role> userRole = new HashSet<>();
-        userRole.add(role2);
+            Set<Role> adminRole = new HashSet<>();
+            adminRole.add(role1);
 
-        // create users
-        User user1 = new User();
-        user1.setUserName("Admin user");
-        user1.setPassword("123");
-        user1.setRoles(adminRole);
+            Set<Role> userRole = new HashSet<>();
+            userRole.add(role2);
 
-        userService.insert(user1);
+            // create users
+            User user1 = new User();
+            user1.setUserName("Admin user");
+            user1.setPassword("123");
+            user1.setRoles(adminRole);
 
-        User user2 = new User();
-        user2.setUserName("user");
-        user2.setPassword("123");
-        user2.setRoles(userRole);
+            userService.insert(user1);
 
-        userService.insert(user2);
+            User user2 = new User();
+            user2.setUserName("user");
+            user2.setPassword("123");
+            user2.setRoles(userRole);
+
+            userService.insert(user2);
+
+        }
     }
 }
