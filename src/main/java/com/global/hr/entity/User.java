@@ -16,10 +16,10 @@ public class User {
 
     private String password;
 
-    @OneToOne(mappedBy = "user")
-    private Employee employee;
+//    @OneToOne(mappedBy = "user")
+//    private Employee employee;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "sec_user_roles",
                joinColumns = @JoinColumn(name = "user_id"),
                inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -49,13 +49,13 @@ public class User {
         this.password = password;
     }
 
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
+//    public Employee getEmployee() {
+//        return employee;
+//    }
+//
+//    public void setEmployee(Employee employee) {
+//        this.employee = employee;
+//    }
 
     public Set<Role> getRoles() {
         return roles;

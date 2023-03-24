@@ -22,8 +22,8 @@ public class Department {
 
     private String name;
 
-    @OneToMany(mappedBy = "department")
-    private List<Employee> employees;
+//    @OneToMany(mappedBy = "department", fetch = FetchType.LAZY)
+//    private List<Employee> employees;
 
     public Long getId() {
         return id;
@@ -41,11 +41,11 @@ public class Department {
         this.name = name;
     }
 
-    public List<Employee> getEmployees() {
-        return employees;
-    }
-
-    public void setEmployees(List<Employee> employees) {
-        this.employees = employees;
-    }
+//    public List<Employee> getEmployees() {
+//        return employees;
+//    }
+//
+//    public void setEmployees(List<Employee> employees) {
+//        this.employees = employees;
+//    }
 }

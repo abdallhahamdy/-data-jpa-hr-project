@@ -1,9 +1,11 @@
 package com.global.hr.controller;
 
 import com.global.hr.entity.Employee;
+import com.global.hr.entity.EmployeeResponse;
 import com.global.hr.repository.EmployeeRepo;
 import com.global.hr.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,20 +20,44 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
-    @Autowired
-    public EmployeeRepo employeeRepo;
-
     @GetMapping("/{id}")
-    public Employee findById (@PathVariable Long id) {
+    public EmployeeResponse findById (@PathVariable Long id) {
 
-        return employeeService.findById(id);
+        Employee emp = employeeService.findById(id);
+
+        EmployeeResponse res = new EmployeeResponse();
+        res.setId(emp.getId());
+        res.setName(emp.getName());
+        res.setDepartment(emp.getDepartment());
+        res.setUser(emp.getUser());
+
+        return res;
     }
+
+    @GetMapping("/emp-dept")
+    public List<Employee> findByNameAndDept(@RequestParam String empName,@RequestParam String deptName) {
+
+        return employeeService.findByEmpAndDept(empName, deptName);
+    }
+
+    @GetMapping("/count-emp-dept")
+    public ResponseEntity<Long> countByNameAndDept(@RequestParam String empName, @RequestParam String deptName) {
+
+        return ResponseEntity.ok(employeeService.countByEmpAndDept(empName, deptName));
+    }
+
+    @DeleteMapping("/emp-dept")
+    public ResponseEntity<Long> deleteByNameAndDept(@RequestParam String empName, @RequestParam String deptName) {
+
+        return ResponseEntity.ok(employeeService.deleteByEmpAndDept(empName, deptName));
+    }
+
 
     @GetMapping("")
     public List<Employee> findAll() {
         logger.info("Get");
 
-        return employeeRepo.findAll();
+        return employeeService.findAll();
     }
 
     @GetMapping("/filter")

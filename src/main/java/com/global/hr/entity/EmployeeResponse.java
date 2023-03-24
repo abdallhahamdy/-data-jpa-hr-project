@@ -1,30 +1,17 @@
 package com.global.hr.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.persistence.*;
 
-@Table(name = "hr_employees")
-@Entity
-public class Employee {
+public class EmployeeResponse {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "emp_id")
     private Long id;
 
-    @Column(name = "emp_name")
     private String name;
 
     private Double salary;
 
-    @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-    @JoinColumn(name = "department_id")
     private Department department;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
     private User user;
 
     public Long getId() {
