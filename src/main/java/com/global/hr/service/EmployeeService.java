@@ -74,4 +74,6 @@ public class EmployeeService {
     public List<Employee> findAll() {
         return employeeRepo.findAll();
     }
+
+    public List<Employee> findBySalary(Double salary, String name) { return employeeRepo.findBySalary(salary, name); }
 }

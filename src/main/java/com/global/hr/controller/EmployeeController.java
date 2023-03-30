@@ -83,4 +83,10 @@ public class EmployeeController {
         return employeeService.findByDepartmentId(deptId);
     }
 
+    @GetMapping("/salary")
+    public ResponseEntity<?> findBySalary(@RequestParam Double salary, @RequestParam String name) {
+        return ResponseEntity.ok(employeeService.findBySalary(salary, name));
+    }
+
+
 }

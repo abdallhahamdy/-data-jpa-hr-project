@@ -7,6 +7,20 @@ import javax.persistence.*;
 
 @Table(name = "hr_employees")
 @Entity
+@NamedQuery(name = "Employee.findBySalary", query = "select emp from Employee emp where emp.salary >= :salary" +
+        " and name like :name")
+
+@SqlResultSetMapping(
+        name = "empMapping",
+        entities = @EntityResult(
+                entityClass = Employee.class,
+                fields = {
+                        @FieldResult(name = "id", column = "emp_id"),
+                        @FieldResult(name = "name", column = "emp_name"),
+                        @FieldResult(name = "salary", column = "salary")}))
+
+@NamedNativeQuery(name = "findByDepartment", query = "select emp_id, emp_name, salary" +
+        " from hr_employees where department_id = :deptId ", resultSetMapping = "empMapping")
 public class Employee {
 
     @Id

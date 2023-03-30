@@ -14,6 +14,10 @@ import java.util.List;
 @Repository
 public interface EmployeeRepo extends JpaRepository<Employee, Long> {
 
+    List<Employee> findBySalary(Double salary, String name);
+
+    List<Employee> findByDepartment (Long deptId);
+
     List<Employee> findByNameContainingAndDepartmentNameContaining(String empName, String deptName);
 
     Long countByNameContainingAndDepartmentNameContaining(String empName, String deptName);
@@ -21,7 +25,6 @@ public interface EmployeeRepo extends JpaRepository<Employee, Long> {
     @Modifying(clearAutomatically = true, flushAutomatically = true)
     @Transactional()
     Long deleteByNameContainingAndDepartmentNameContaining(String empName, String deptName);
-
 
     // this is the JPQL
     @Query(value = "select emp from Employee emp where emp.name like :empName")
@@ -33,7 +36,7 @@ public interface EmployeeRepo extends JpaRepository<Employee, Long> {
 
     List<Employee> findByDepartmentId(Long deptId);
 
-    @Query(value = "select emp from Employee emp join emp.department dept where dept.id = :deptId")
-    List<Employee> findByDepartment(Long deptId);
+//    @Query(value = "select emp from Employee emp join emp.department dept where dept.id = :deptId")
+//    List<Employee> findByDepartment(Long deptId);
 
 }
