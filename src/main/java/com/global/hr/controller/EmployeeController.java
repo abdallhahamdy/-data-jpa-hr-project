@@ -1,5 +1,6 @@
 package com.global.hr.controller;
 
+import com.global.hr.HRStatisticProjection;
 import com.global.hr.entity.Employee;
 import com.global.hr.entity.EmployeeResponse;
 import com.global.hr.repository.EmployeeRepo;
@@ -88,5 +89,9 @@ public class EmployeeController {
         return ResponseEntity.ok(employeeService.findBySalary(salary, name));
     }
 
+    @GetMapping("statistic")
+    public ResponseEntity<?>  getHRStatistic () {
 
+        return ResponseEntity.ok(employeeService.getHRStatistic());
+    }
 }

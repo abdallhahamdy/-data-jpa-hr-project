@@ -1,5 +1,6 @@
 package com.global.hr.service;
 
+import com.global.hr.HRStatisticProjection;
 import com.global.hr.entity.Department;
 import com.global.hr.entity.Employee;
 import com.global.hr.repository.EmployeeRepo;
@@ -76,4 +77,9 @@ public class EmployeeService {
     }
 
     public List<Employee> findBySalary(Double salary, String name) { return employeeRepo.findBySalary(salary, name); }
+
+    public HRStatisticProjection getHRStatistic () {
+
+        return employeeRepo.getHRStatistic();
+    }
 }

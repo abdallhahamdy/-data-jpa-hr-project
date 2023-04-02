@@ -1,5 +1,6 @@
 package com.global.hr.repository;
 
+import com.global.hr.HRStatisticProjection;
 import com.global.hr.entity.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -31,10 +32,17 @@ public interface EmployeeRepo extends JpaRepository<Employee, Long> {
     List<Employee> filter(@Param("empName") String name);
 
     // this is the sql native
-    @Query(value = "select * from employee emp where emp.name like :empName", nativeQuery = true)
+    @Query(value = "select * from hr_employees emp where emp.emp_name like :empName", nativeQuery = true)
     List<Employee> filterNative(@Param("empName") String name);
 
     List<Employee> findByDepartmentId(Long deptId);
+
+    @Query(value = "select \n" +
+            " (select count(*) from department) deptCount,\n" +
+            " (select count(*) from hr_employees) empCount,\n" +
+            " (select count(*) from sec_users) userCount",
+            nativeQuery = true)
+    HRStatisticProjection getHRStatistic();
 
 //    @Query(value = "select emp from Employee emp join emp.department dept where dept.id = :deptId")
 //    List<Employee> findByDepartment(Long deptId);
